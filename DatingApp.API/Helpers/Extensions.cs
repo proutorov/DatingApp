@@ -15,7 +15,7 @@ namespace DatingApp.API.Helpers
             var age = DateTime.Today.Year - inputDateTime.Year;
             if (inputDateTime.AddYears(age) > DateTime.Today)
             {
-                age--;
+                age = age == 0 ? age : age--;
             }
             return age;
         }

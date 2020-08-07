@@ -71,14 +71,14 @@ namespace DatingApp.API.Controllers
                     {
                         File = new FileDescription(file.Name, stream),
                         Transformation = new Transformation()
-                            .Width(500).Height(500).Crop("fill").Gravity(CloudinaryDotNet.Gravity.Face)
+                            .Width(500).Height(500).Crop("crop").Gravity("faces")
                     };
 
                     uploadResult = _cloudinary.Upload(uploadParams);
                 }
             }
 
-            newPhotoDto.Url = uploadResult.Url.ToString();
+            newPhotoDto.Url = uploadResult.Uri.ToString();
             newPhotoDto.PublicId = uploadResult.PublicId;
 
             var photo = _mapper.Map<Photo>(newPhotoDto);
@@ -94,7 +94,7 @@ namespace DatingApp.API.Controllers
             if (await _repository.SaveAll())
             {
                 var photoForReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto", new { id = photo.Id }, photoForReturn);
+                return CreatedAtRoute("GetPhoto", new { userId, id = photo.Id }, photoForReturn);
             }
 
             return BadRequest("Could not add the photo");

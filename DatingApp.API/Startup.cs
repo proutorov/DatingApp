@@ -43,7 +43,9 @@ namespace DatingApp.API
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseMySql
-            (Configuration.GetConnectionString("DefaultConnection")));
+            (Configuration.GetConnectionString("DefaultConnection"), mySqlOptions => {
+                mySqlOptions.DisableBackslashEscaping();
+            }));
 
             ConfigureServices(services);
         }

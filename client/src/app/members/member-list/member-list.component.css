@@ -1,0 +1,6 @@
+.btn-group > .btn-primary.active,.btn-group > .btn-primary:active {
+    color: #fff;
+    background-color: #ba431a;
+    border-color: #af3f18;
+    box-shadow: 0 0 0 0.25rem rgb(236 110 65 / 50%);
+}

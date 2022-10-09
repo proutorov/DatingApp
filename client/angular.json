@@ -72,7 +72,8 @@
             "sslKey": "./ssl/server.key",
             "sslCert": "./ssl/server.crt",
             "ssl": true,
-            "browserTarget": "client:build"
+            "browserTarget": "client:build",
+            "port": 4201
           },
           "configurations": {
             "production": {
